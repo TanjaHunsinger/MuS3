@@ -12,7 +12,48 @@ public class DiscreteConfidenceCounter {
 	 * Hint: see section 4.4 in course syllabus
 	 */
 
-	
+	public double alpha = 0.05; //default wert
+
+	/**
+	 * anhand des alpha wertes wird die row berechnet
+	 * @return row
+	 */
+	public int getRow() {
+		int row = 0;
+
+		if (alpha < 0.05) {
+			row = 1;			
+		}
+		else if (alpha >= 0.05 && alpha < 0.1) {
+			row = 2;
+		}
+		else {
+			row = 3;
+		}
+		
+		return row;
+	}
+
+	public double getT(int numSamples) {
+		double value = 0;
+
+		//abfrage deegrees of freedom im angegebenen bereich ist
+		if (numSamples > 1 || numSamples < 1000000 ) {
+			for (int i = 0; i < tAlphaMatrix.length; i++) {
+				if(tAlphaMatrix[0][i] == numSamples) {
+					if(getRow() > 0) {
+						value = tAlphaMatrix[getRow()][i];
+					}
+				}
+			}
+		}
+		else { //degrees of freedom kleiner 1 bzw größer 1000000
+			value = 0;
+		}
+
+		return value;
+	}
+
 	/*	Row 1: degrees of freedom
 	 *  Row 2: alpha 0.01
 	 *  Row 3: alpha 0.05
@@ -33,7 +74,7 @@ public class DiscreteConfidenceCounter {
     public String report() {
         String out = super.report();
         out += ("" + "\talpha = " + alpha + "\n" +
-                "\tt(1-alpha/2) = " + getT((int) (getNumSamples() - 1)) + "\n" +
+                "\tt(1-alpha/2) = " + getT((getNumSamples() - 1)) + "\n" +
                 "\tlower bound = " + getLowerBound() + "\n" +
                 "\tupper bound = " + getUpperBound());
         return out;
@@ -43,7 +84,7 @@ public class DiscreteConfidenceCounter {
 		 * @see Counter#csvReport(String)
 		 * Uncomment this function when you have implemented this class for reporting.
 		 */
-/**	@Override
+		/**	@Override
     public void csvReport(String outputdir) {
         String content = observedVariable + ";" + getNumSamples() + ";" + getMean() + ";" + getVariance() + ";" + getStdDeviation() + ";" +
                 getCvar() + ";" + getMin() + ";" + getMax() + ";" + alpha + ";" + getT(getNumSamples() - 1) + ";" + getLowerBound() + ";" +
@@ -51,6 +92,6 @@ public class DiscreteConfidenceCounter {
         String labels = "#counter ; numSamples ; MEAN; VAR; STD; CVAR; MIN; MAX;alpha;t(1-alpha/2);lowerBound;upperBound\n";
         writeCsv(outputdir, content, labels);
   }
-  */
+		 */
 
 }
