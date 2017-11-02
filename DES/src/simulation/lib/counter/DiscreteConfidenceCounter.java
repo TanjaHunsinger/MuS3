@@ -36,16 +36,22 @@ public class DiscreteConfidenceCounter {
 
 	public double getT(double numSamples) {
 		double value = 0;
+		//System.out.println(tAlphaMatrix[0].length);
 
 		//abfrage deegrees of freedom im angegebenen bereich ist
 		if (numSamples > 1 && numSamples < 1000000 ) {
-			for (int i = 0; i < tAlphaMatrix.length; i++) {
+			for (int i = 0; i < tAlphaMatrix[0].length; i++) {
 				if(tAlphaMatrix[0][i] == numSamples) {
 					value = tAlphaMatrix[getRow()][i];
 				}
-				else interPol(numSamples);
 			}
-			
+		}else {
+			numSamples = 1000000;
+			value = tAlphaMatrix[getRow()].length -1;
+		}
+		
+		if(value == 0) {
+			value = interPol(numSamples);
 		}
 
 		return value;
@@ -54,24 +60,25 @@ public class DiscreteConfidenceCounter {
 	public double interPol(double numSamples) {
 		double value = 0;
 
-		double temp = (numSamples - tAlphaMatrix[0][0])/tAlphaMatrix[0][tAlphaMatrix.length] * (tAlphaMatrix.length -1);
-		System.out.println(temp);
+		double temp = ((numSamples - tAlphaMatrix[0][0])/(tAlphaMatrix[0].length-1 - tAlphaMatrix[0][0])) * (tAlphaMatrix[0].length -1);
 
 		if (numSamples <= temp) {
 			for (int j = 0; j < temp; j++) {
-				if (numSamples == tAlphaMatrix[0][j]) {
-					value = tAlphaMatrix[getRow()][j+1];
+				if (tAlphaMatrix[0][j] == (int)numSamples) {
+					value = tAlphaMatrix[getRow()][j];
 				}
 			}
 		}
 		else if (numSamples > temp) {
-			for (int j = 0; j < tAlphaMatrix.length; j++) {
-				if (numSamples == tAlphaMatrix[0][j]) {
-					value = tAlphaMatrix[getRow()][j+1];
+			for (int j = 0; j < tAlphaMatrix[0].length; j++) {
+				if ((int)numSamples == tAlphaMatrix[0][j]) {
+					value = tAlphaMatrix[getRow()][j];
 				}
 			}
 		}
 		return value;
+
+
 	}
 
 	/*	Row 1: degrees of freedom
