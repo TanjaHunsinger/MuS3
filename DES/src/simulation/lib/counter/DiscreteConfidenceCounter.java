@@ -30,27 +30,47 @@ public class DiscreteConfidenceCounter {
 		else {
 			row = 3;
 		}
-		
+
 		return row;
 	}
 
-	public double getT(int numSamples) {
+	public double getT(double numSamples) {
 		double value = 0;
 
 		//abfrage deegrees of freedom im angegebenen bereich ist
-		if (numSamples > 1 || numSamples < 1000000 ) {
+		if (numSamples > 1 && numSamples < 1000000 ) {
 			for (int i = 0; i < tAlphaMatrix.length; i++) {
 				if(tAlphaMatrix[0][i] == numSamples) {
-					if(getRow() > 0) {
-						value = tAlphaMatrix[getRow()][i];
-					}
+					value = tAlphaMatrix[getRow()][i];
+				}
+				else interPol(numSamples);
+			}
+			
+		}
+
+		return value;
+	}
+
+	public double interPol(double numSamples) {
+		double value = 0;
+
+		double temp = (numSamples - tAlphaMatrix[0][0])/tAlphaMatrix[0][tAlphaMatrix.length] * (tAlphaMatrix.length -1);
+		System.out.println(temp);
+
+		if (numSamples <= temp) {
+			for (int j = 0; j < temp; j++) {
+				if (numSamples == tAlphaMatrix[0][j]) {
+					value = tAlphaMatrix[getRow()][j+1];
 				}
 			}
 		}
-		else { //degrees of freedom kleiner 1 bzw größer 1000000
-			value = 0;
+		else if (numSamples > temp) {
+			for (int j = 0; j < tAlphaMatrix.length; j++) {
+				if (numSamples == tAlphaMatrix[0][j]) {
+					value = tAlphaMatrix[getRow()][j+1];
+				}
+			}
 		}
-
 		return value;
 	}
 

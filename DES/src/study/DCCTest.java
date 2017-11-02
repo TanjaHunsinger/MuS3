@@ -10,13 +10,11 @@ public class DCCTest {
     public static void main(String[] args) {
         testDCC();
         DiscreteConfidenceCounter test = new DiscreteConfidenceCounter();
-        System.out.println("result " + test.getT(2));
+        System.out.println("result " + test.getT(4));
         System.out.println("alpha " + test.alpha);
-        
-        
-        test.alpha = 0.5;
+
         System.out.println("alpha1 " + test.alpha);
-        System.out.println("result1 " + test.getT(2));
+        System.out.println("result1 " + test.getT(4.7));
     }
 
     public static void testDCC() {
