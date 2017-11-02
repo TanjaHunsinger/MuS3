@@ -9,16 +9,7 @@ public class DiscreteConfidenceCounter {
      * Hint: see section 4.4 in course syllabus
      */
 	
-	protected double alpha = 0.01;
-	protected int n = 1; // df
-	protected double quantile = 99.9;
 	
-	private void getT(int numSamples, double alpha) {
-		n = numSamples -1;
-		quantile = 1-alpha;
-		
-	}
-
     /*	Row 1: degrees of freedom
      *  Row 2: alpha 0.01
      *  Row 3: alpha 0.05
