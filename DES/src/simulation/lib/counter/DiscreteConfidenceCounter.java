@@ -33,7 +33,13 @@ public class DiscreteConfidenceCounter {
 
 		return row;
 	}
-
+	
+	
+	/**
+	 * mit numSamples und getRow wird der gesuchte wert aus der tabelle gelesen
+	 * @param numSamples
+	 * @return value
+	 */
 	public double getT(double numSamples) {
 		double value = 0;
 		//System.out.println(tAlphaMatrix[0].length);
@@ -57,6 +63,12 @@ public class DiscreteConfidenceCounter {
 		return value;
 	}
 
+	/**
+	 * ist numSamples zwischen zwei werten im array, so wird die interpolationssuche
+	 * aufgerufen und gibt den array wert zurück
+	 * @param numSamples
+	 * @return value
+	 */
 	public double interPol(double numSamples) {
 		double value = 0;
 
@@ -78,14 +90,21 @@ public class DiscreteConfidenceCounter {
 		}
 		return value;
 	}
-
+	/**
+	 * gibt die untere grenze zuruek
+	 * @return bound
+	 */
 	public double getLowerBound() {
-		double bound = dd.getMean() - (1- alpha) * Math.sqrt(Math.pow(dd.getVariance(),2) / dd.getNumSamples());
+		double bound = (dd.getMean() - (1- (alpha/2))) * (Math.sqrt(Math.pow(dd.getVariance(),2) / dd.getNumSamples()));
 		return bound;
 	}
-
+	
+	/**
+	 * gibt obere grenze zurueck
+	 * @return bound
+	 */
 	public double getUpperBound() {
-		double bound = dd.getMean() + (1- alpha) * Math.sqrt(Math.pow(dd.getVariance(),2) / dd.getNumSamples());
+		double bound = (dd.getMean() + (1- (alpha /2))) * Math.sqrt(Math.pow(dd.getVariance(),2) / dd.getNumSamples());
 		return bound;
 	}
 	/*	Row 1: degrees of freedom
