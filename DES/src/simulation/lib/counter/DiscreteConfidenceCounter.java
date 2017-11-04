@@ -5,12 +5,15 @@ import simulation.lib.counter.*;
 /**
  * This class implements a discrete time confidence counter
  */
-public class DiscreteConfidenceCounter {
+public class DiscreteConfidenceCounter extends DiscreteCounter {
 	/*
 	 * TODO Problem 3.1.2 - implement this class according to the given class diagram!
 	 * Hint: see section 4.4 in course syllabus
 	 */
-
+	public DiscreteConfidenceCounter(String variable){
+		super(variable, "type: DiscreteConfidenceCounter" );
+	}
+	
 	public double alpha = 0.05; //default wert
 	DiscreteCounter dd = new DiscreteCounter(" "); // objekt
 
@@ -95,7 +98,7 @@ public class DiscreteConfidenceCounter {
 	 * @return bound
 	 */
 	public double getLowerBound() {
-		double bound = (dd.getMean() - (1- (alpha/2))) * (Math.sqrt(Math.pow(dd.getVariance(),2) / dd.getNumSamples()));
+		double bound = (getMean() - (1- (alpha/2))) * (Math.sqrt(Math.pow(getVariance(),2) / getNumSamples()));
 		return bound;
 	}
 	
@@ -104,7 +107,7 @@ public class DiscreteConfidenceCounter {
 	 * @return bound
 	 */
 	public double getUpperBound() {
-		double bound = (dd.getMean() + (1- (alpha /2))) * Math.sqrt(Math.pow(dd.getVariance(),2) / dd.getNumSamples());
+		double bound = (getMean() + (1- (alpha /2))) * Math.sqrt(Math.pow(getVariance(),2) / getNumSamples());
 		return bound;
 	}
 	/*	Row 1: degrees of freedom
@@ -123,11 +126,11 @@ public class DiscreteConfidenceCounter {
 		 * @see Counter#report()
 		 * Uncomment this function when you have implemented this class for reporting.
 		 */
-		//@Override
+		@Override
 		public String report() {
-			String out = dd.report();
+			String out = super.report();
 			out += ("" + "\talpha = " + alpha + "\n" +
-					"\tt(1-alpha/2) = " + getT((dd.getNumSamples() - 1)) + "\n" +
+					"\tt(1-alpha/2) = " + getT((getNumSamples() - 1)) + "\n" +
 					"\tlower bound = " + getLowerBound() + "\n" +
 					"\tupper bound = " + getUpperBound());
 			return out;
@@ -137,10 +140,10 @@ public class DiscreteConfidenceCounter {
 		 * @see Counter#csvReport(String)
 		 * Uncomment this function when you have implemented this class for reporting.
 		 */
-	//@Override
+	@Override
     public void csvReport(String outputdir) {
-        String content = dd.observedVariable + ";" + dd.getNumSamples() + ";" + dd.getMean() + ";" + dd.getVariance() + ";" + dd.getStdDeviation() + ";" +
-                dd.getCvar() + ";" + dd.getMin() + ";" + dd.getMax() + ";" + alpha + ";" + getT(dd.getNumSamples() - 1) + ";" + getLowerBound() + ";" +
+        String content = observedVariable + ";" + getNumSamples() + ";" + getMean() + ";" + getVariance() + ";" + getStdDeviation() + ";" +
+                getCvar() + ";" + getMin() + ";" + getMax() + ";" + alpha + ";" + getT(getNumSamples() - 1) + ";" + getLowerBound() + ";" +
                 getUpperBound() + "\n";
         String labels = "#counter ; numSamples ; MEAN; VAR; STD; CVAR; MIN; MAX;alpha;t(1-alpha/2);lowerBound;upperBound\n";
         dd.writeCsv(outputdir, content, labels);

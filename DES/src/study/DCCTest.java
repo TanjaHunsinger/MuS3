@@ -1,5 +1,6 @@
 package study;
 
+import simulation.lib.counter.Counter;
 import simulation.lib.counter.DiscreteConfidenceCounter;
 import simulation.lib.counter.DiscreteCounter;
 import simulation.lib.randVars.continous.Normal;
@@ -16,8 +17,9 @@ public class DCCTest {
 
     public static void testDCC() {
         // TODO Auto-generated method stub
-    	DiscreteConfidenceCounter test = new DiscreteConfidenceCounter();
+    	DiscreteConfidenceCounter test = new DiscreteConfidenceCounter(" ");
         DiscreteCounter test1 = new DiscreteCounter(" ");
+               
         //System.out.println("Test getT: ");
         //System.out.println("alpha " + test.alpha);
         //System.out.println("result " + test.getT(1000000) + "\n");
@@ -33,11 +35,12 @@ public class DCCTest {
         //System.out.println(test.report());
         
         Normal norm = new Normal(null);
+        
         //======= alpha = 0.1 ========//
         test.alpha = 0.1;
         //normal: mean 10, cvar 0.25
         norm.setMeanAndCvar(10, 0.25);
-        //System.out.println(norm.toString());
+        System.out.println(norm.toString());
         System.out.println(test.report());
         
       //normal: mean 10, cvar 0.5
