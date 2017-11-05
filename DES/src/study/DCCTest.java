@@ -143,7 +143,7 @@ public class DCCTest {
 				//k-Erlangverteilung:
 				kerlang_10_025_90.count(runErlang_10_025.getRV());
 				kerlang_10_025_95.count(runErlang_10_025.getRV());
-				
+
 				kerlang_10_05_90.count(runErlang_10_05.getRV());
 				kerlang_10_05_95.count(runErlang_10_05.getRV());
 
@@ -155,8 +155,8 @@ public class DCCTest {
 
 				kerlang_10_4_90.count(runErlang_10_4.getRV());
 				kerlang_10_4_95.count(runErlang_10_4.getRV());
-				*/
-				
+				 */
+
 				//Exponentialverteilung
 				exp_10_025_90.count(runExp_10.getRV());
 				exp_10_025_95.count(runExp_10.getRV());
@@ -166,13 +166,28 @@ public class DCCTest {
 
 				exp_10_1_90.count(runExp_10.getRV());
 				exp_10_1_95.count(runExp_10.getRV());
-				
+
 				exp_10_2_90.count(runExp_10.getRV());
 				exp_10_2_95.count(runExp_10.getRV());
-				
+
 				exp_10_4_90.count(runExp_10.getRV());
 				exp_10_4_95.count(runExp_10.getRV());
+				
+				//Hyperexponentialverteilung
+				hexp_10_025_90.count(runHexp_10_025.getRV());
+				hexp_10_025_95.count(runHexp_10_025.getRV());
 
+				hexp_10_05_90.count(runHexp_10_05.getRV());
+				hexp_10_05_95.count(runHexp_10_05.getRV());
+
+				hexp_10_1_90.count(runHexp_10_1.getRV());
+				hexp_10_1_95.count(runHexp_10_1.getRV());
+
+				hexp_10_2_90.count(runHexp_10_2.getRV());
+				hexp_10_2_95.count(runHexp_10_2.getRV());
+
+				hexp_10_4_90.count(runHexp_10_4.getRV());
+				hexp_10_4_95.count(runHexp_10_4.getRV());
 
 
 			}
@@ -248,21 +263,21 @@ public class DCCTest {
 
 		double kerlang_lowerBound_1_95 = (kerlang_10_1_95.getLowerBound());
 		double kerlang_upperBound_1_95 = (kerlang_10_1_95.getUpperBound());
-/*
+		/*
 		double kerlang_lowerBound_2_90 = (kerlang_10_2_90.getLowerBound());
 		double kerlang_upperBound_2_90 = (kerlang_10_2_90.getUpperBound());
-		
+
 		double kerlang_lowerBound_2_95 = (kerlang_10_2_95.getLowerBound());
 		double kerlang_upperBound_2_95 = (kerlang_10_2_95.getUpperBound());
 
-		
+
 		double kerlang_lowerBound_4_90 = (kerlang_10_4_90.getLowerBound());
 		double kerlang_upperBound_4_90 = (kerlang_10_4_90.getUpperBound());
 
 		double kerlang_lowerBound_4_95 = (kerlang_10_4_95.getLowerBound());
 		double kerlang_upperBound_4_95 = (kerlang_10_4_95.getUpperBound());
 		 */
-		
+
 		//Ausgabe kErlangverteilung:
 		/*
 		System.out.println("Verteilung: k-Erlangverteilung ");
@@ -278,55 +293,105 @@ public class DCCTest {
 		//System.out.println(" 95%       0.05    10    2.00        " + new DecimalFormat("0.0000").format(kerlang_lowerBound_2_95) + "              "+ new DecimalFormat("0.0000").format(kerlang_upperBound_2_95));
 		//System.out.println(" 90%       0.10    10    4.00        " + new DecimalFormat("0.0000").format(kerlang_lowerBound_4_90) + "              "+ new DecimalFormat("0.0000").format(kerlang_upperBound_4_90));
 		//System.out.println(" 95%       0.05    10    4.00        " + new DecimalFormat("0.0000").format(kerlang_lowerBound_4_95) + "              "+ new DecimalFormat("0.0000").format(kerlang_upperBound_4_95));
-*/
-		
+		 */
+
 		// ==========================================================================================================//		
-				//berechnet lower und upper bound für k-Erlangverteilung
-				double exp_lowerBound_025_90 = (exp_10_025_90.getLowerBound());
-				double exp_upperBound_025_90 = (exp_10_025_90.getUpperBound());
+		//berechnet lower und upper bound für Exponentialverteilung
+		double exp_lowerBound_025_90 = (exp_10_025_90.getLowerBound());
+		double exp_upperBound_025_90 = (exp_10_025_90.getUpperBound());
 
-				double exp_lowerBound_025_95 = (exp_10_025_95.getLowerBound());
-				double exp_upperBound_025_95 = (exp_10_025_95.getUpperBound());
+		double exp_lowerBound_025_95 = (exp_10_025_95.getLowerBound());
+		double exp_upperBound_025_95 = (exp_10_025_95.getUpperBound());
 
-				double exp_lowerBound_05_90 = (exp_10_05_90.getLowerBound());
-				double exp_upperBound_05_90 = (exp_10_05_90.getUpperBound());
+		double exp_lowerBound_05_90 = (exp_10_05_90.getLowerBound());
+		double exp_upperBound_05_90 = (exp_10_05_90.getUpperBound());
 
-				double exp_lowerBound_05_95 = (exp_10_05_95.getLowerBound());
-				double exp_upperBound_05_95 = (exp_10_05_95.getUpperBound());
+		double exp_lowerBound_05_95 = (exp_10_05_95.getLowerBound());
+		double exp_upperBound_05_95 = (exp_10_05_95.getUpperBound());
 
-				double exp_lowerBound_1_90 = (exp_10_1_90.getLowerBound());
-				double exp_upperBound_1_90 = (exp_10_1_90.getUpperBound());
+		double exp_lowerBound_1_90 = (exp_10_1_90.getLowerBound());
+		double exp_upperBound_1_90 = (exp_10_1_90.getUpperBound());
 
-				double exp_lowerBound_1_95 = (exp_10_1_95.getLowerBound());
-				double exp_upperBound_1_95 = (exp_10_1_95.getUpperBound());
-		
-				double exp_lowerBound_2_90 = (exp_10_2_90.getLowerBound());
-				double exp_upperBound_2_90 = (exp_10_2_90.getUpperBound());
-				
-				double exp_lowerBound_2_95 = (exp_10_2_95.getLowerBound());
-				double exp_upperBound_2_95 = (exp_10_2_95.getUpperBound());
+		double exp_lowerBound_1_95 = (exp_10_1_95.getLowerBound());
+		double exp_upperBound_1_95 = (exp_10_1_95.getUpperBound());
 
-				double exp_lowerBound_4_90 = (exp_10_4_90.getLowerBound());
-				double exp_upperBound_4_90 = (exp_10_4_90.getUpperBound());
+		double exp_lowerBound_2_90 = (exp_10_2_90.getLowerBound());
+		double exp_upperBound_2_90 = (exp_10_2_90.getUpperBound());
 
-				double exp_lowerBound_4_95 = (exp_10_4_95.getLowerBound());
-				double exp_upperBound_4_95 = (exp_10_4_95.getUpperBound());
-				
-				
-				//Ausgabe kErlangverteilung:
-				System.out.println("Verteilung: Exponentialverteilung ");
-				System.out.println("Anzahl Samples: " + numSamples);
-				System.out.println("Quantil    alpha   mean  cVar       lower bound          upper bound" );
-				System.out.println(" 90%       0.10    10    0.25        " + new DecimalFormat("0.0000").format(exp_lowerBound_025_90) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_025_90));
-				System.out.println(" 95%       0.05    10    0.25        " + new DecimalFormat("0.0000").format(exp_lowerBound_025_95) + "               "+ new DecimalFormat("0.0000").format(exp_upperBound_025_95));
-				System.out.println(" 90%       0.10    10    0.50        " + new DecimalFormat("0.0000").format(exp_lowerBound_05_90) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_05_90));
-				System.out.println(" 95%       0.05    10    0.50       " + new DecimalFormat("0.0000").format(exp_lowerBound_05_95) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_05_95));
-				System.out.println(" 90%       0.10    10    1.00        " + new DecimalFormat("0.0000").format(exp_lowerBound_1_90) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_1_90));
-				System.out.println(" 95%       0.05    10    1.00        " + new DecimalFormat("0.0000").format(exp_lowerBound_1_95) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_1_95));
-		      System.out.println(" 90%       0.10    10    2.00        " + new DecimalFormat("0.0000").format(exp_lowerBound_2_90) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_2_90));
-				System.out.println(" 95%       0.05    10    2.00        " + new DecimalFormat("0.0000").format(exp_lowerBound_2_95) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_2_95));
-				System.out.println(" 90%       0.10    10    4.00        " + new DecimalFormat("0.0000").format(exp_lowerBound_4_90) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_4_90));
-				System.out.println(" 95%       0.05    10    4.00        " + new DecimalFormat("0.0000").format(exp_lowerBound_4_95) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_4_95));
-		
+		double exp_lowerBound_2_95 = (exp_10_2_95.getLowerBound());
+		double exp_upperBound_2_95 = (exp_10_2_95.getUpperBound());
+
+		double exp_lowerBound_4_90 = (exp_10_4_90.getLowerBound());
+		double exp_upperBound_4_90 = (exp_10_4_90.getUpperBound());
+
+		double exp_lowerBound_4_95 = (exp_10_4_95.getLowerBound());
+		double exp_upperBound_4_95 = (exp_10_4_95.getUpperBound());
+
+
+		//Ausgabe kErlangverteilung:
+		/*
+		System.out.println("Verteilung: Exponentialverteilung ");
+		System.out.println("Anzahl Samples: " + numSamples);
+		System.out.println("Quantil    alpha   mean  cVar       lower bound          upper bound" );
+		System.out.println(" 90%       0.10    10    0.25        " + new DecimalFormat("0.0000").format(exp_lowerBound_025_90) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_025_90));
+		System.out.println(" 95%       0.05    10    0.25        " + new DecimalFormat("0.0000").format(exp_lowerBound_025_95) + "               "+ new DecimalFormat("0.0000").format(exp_upperBound_025_95));
+		System.out.println(" 90%       0.10    10    0.50        " + new DecimalFormat("0.0000").format(exp_lowerBound_05_90) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_05_90));
+		System.out.println(" 95%       0.05    10    0.50       " + new DecimalFormat("0.0000").format(exp_lowerBound_05_95) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_05_95));
+		System.out.println(" 90%       0.10    10    1.00        " + new DecimalFormat("0.0000").format(exp_lowerBound_1_90) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_1_90));
+		System.out.println(" 95%       0.05    10    1.00        " + new DecimalFormat("0.0000").format(exp_lowerBound_1_95) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_1_95));
+		System.out.println(" 90%       0.10    10    2.00        " + new DecimalFormat("0.0000").format(exp_lowerBound_2_90) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_2_90));
+		System.out.println(" 95%       0.05    10    2.00        " + new DecimalFormat("0.0000").format(exp_lowerBound_2_95) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_2_95));
+		System.out.println(" 90%       0.10    10    4.00        " + new DecimalFormat("0.0000").format(exp_lowerBound_4_90) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_4_90));
+		System.out.println(" 95%       0.05    10    4.00        " + new DecimalFormat("0.0000").format(exp_lowerBound_4_95) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_4_95));
+		 */
+
+		// ==========================================================================================================//		
+		//berechnet lower und upper bound für k-Erlangverteilung
+		double hexp_lowerBound_025_90 = (hexp_10_025_90.getLowerBound());
+		double hexp_upperBound_025_90 = (hexp_10_025_90.getUpperBound());
+
+		double hexp_lowerBound_025_95 = (hexp_10_025_95.getLowerBound());
+		double hexp_upperBound_025_95 = (hexp_10_025_95.getUpperBound());
+
+		double hexp_lowerBound_05_90 = (hexp_10_05_90.getLowerBound());
+		double hexp_upperBound_05_90 = (hexp_10_05_90.getUpperBound());
+
+		double hexp_lowerBound_05_95 = (hexp_10_05_95.getLowerBound());
+		double hexp_upperBound_05_95 = (hexp_10_05_95.getUpperBound());
+
+		double hexp_lowerBound_1_90 = (hexp_10_1_90.getLowerBound());
+		double hexp_upperBound_1_90 = (hexp_10_1_90.getUpperBound());
+
+		double hexp_lowerBound_1_95 = (hexp_10_1_95.getLowerBound());
+		double hexp_upperBound_1_95 = (hexp_10_1_95.getUpperBound());
+
+		double hexp_lowerBound_2_90 = (exp_10_2_90.getLowerBound());
+		double hexp_upperBound_2_90 = (exp_10_2_90.getUpperBound());
+
+		double hexp_lowerBound_2_95 = (hexp_10_2_95.getLowerBound());
+		double hexp_upperBound_2_95 = (hexp_10_2_95.getUpperBound());
+
+		double hexp_lowerBound_4_90 = (hexp_10_4_90.getLowerBound());
+		double hexp_upperBound_4_90 = (hexp_10_4_90.getUpperBound());
+
+		double hexp_lowerBound_4_95 = (hexp_10_4_95.getLowerBound());
+		double hexp_upperBound_4_95 = (hexp_10_4_95.getUpperBound());
+
+
+		//Ausgabe kErlangverteilung:
+		System.out.println("Verteilung: Hyperexponentialverteilung ");
+		System.out.println("Anzahl Samples: " + numSamples);
+		System.out.println("Quantil    alpha   mean  cVar       lower bound          upper bound" );
+		System.out.println(" 90%       0.10    10    0.25        " + new DecimalFormat("0.0000").format(hexp_lowerBound_025_90) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_025_90));
+		System.out.println(" 95%       0.05    10    0.25        " + new DecimalFormat("0.0000").format(hexp_lowerBound_025_95) + "               "+ new DecimalFormat("0.0000").format(hexp_upperBound_025_95));
+		System.out.println(" 90%       0.10    10    0.50        " + new DecimalFormat("0.0000").format(hexp_lowerBound_05_90) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_05_90));
+		System.out.println(" 95%       0.05    10    0.50       " + new DecimalFormat("0.0000").format(hexp_lowerBound_05_95) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_05_95));
+		System.out.println(" 90%       0.10    10    1.00        " + new DecimalFormat("0.0000").format(hexp_lowerBound_1_90) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_1_90));
+		System.out.println(" 95%       0.05    10    1.00        " + new DecimalFormat("0.0000").format(hexp_lowerBound_1_95) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_1_95));
+		System.out.println(" 90%       0.10    10    2.00        " + new DecimalFormat("0.0000").format(hexp_lowerBound_2_90) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_2_90));
+		System.out.println(" 95%       0.05    10    2.00        " + new DecimalFormat("0.0000").format(hexp_lowerBound_2_95) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_2_95));
+		System.out.println(" 90%       0.10    10    4.00        " + new DecimalFormat("0.0000").format(hexp_lowerBound_4_90) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_4_90));
+		System.out.println(" 95%       0.05    10    4.00        " + new DecimalFormat("0.0000").format(hexp_lowerBound_4_95) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_4_95));
+
 	}
 }
