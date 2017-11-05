@@ -1,7 +1,9 @@
 package simulation.lib.counter;
 
 
-import simulation.lib.counter.*;
+import simulation.lib.randVars.continous.*;
+import simulation.lib.randVars.*;
+
 /**
  * This class implements a discrete time confidence counter
  */
@@ -10,12 +12,14 @@ public class DiscreteConfidenceCounter extends DiscreteCounter {
 	 * TODO Problem 3.1.2 - implement this class according to the given class diagram!
 	 * Hint: see section 4.4 in course syllabus
 	 */
-	public DiscreteConfidenceCounter(String variable){
+	public DiscreteConfidenceCounter(String variable, double alpha){
 		super(variable, "type: DiscreteConfidenceCounter" );
+		this.alpha = alpha;
 	}
 	
+	
 	public double alpha = 0.05; //default wert
-	DiscreteCounter dd = new DiscreteCounter(" "); // objekt
+	//DiscreteCounter dd = new DiscreteCounter(" "); // objekt
 
 	/**
 	 * anhand des alpha wertes wird die row berechnet
@@ -36,14 +40,14 @@ public class DiscreteConfidenceCounter extends DiscreteCounter {
 
 		return row;
 	}
-	
-	
+
+
 	/**
 	 * mit numSamples und getRow wird der gesuchte wert aus der tabelle gelesen
 	 * @param numSamples
 	 * @return value
 	 */
-	public double getT(double numSamples) {
+	public double getT(long numSamples) {
 		double value = 0;
 		//System.out.println(tAlphaMatrix[0].length);
 
@@ -72,21 +76,21 @@ public class DiscreteConfidenceCounter extends DiscreteCounter {
 	 * @param numSamples
 	 * @return value
 	 */
-	public double interPol(double numSamples) {
+	public double interPol(long numSamples) {
 		double value = 0;
 
 		double temp = ((numSamples - tAlphaMatrix[0][0])/(tAlphaMatrix[0].length-1 - tAlphaMatrix[0][0])) * (tAlphaMatrix[0].length -1);
 
 		if (numSamples <= temp) {
 			for (int j = 0; j < temp; j++) {
-				if (tAlphaMatrix[0][j] == (int)numSamples) {
+				if (tAlphaMatrix[0][j] == numSamples) {
 					value = tAlphaMatrix[getRow()][j];
 				}
 			}
 		}
 		else if (numSamples > temp) {
 			for (int j = 0; j < tAlphaMatrix[0].length; j++) {
-				if ((int)numSamples == tAlphaMatrix[0][j]) {
+				if (numSamples == tAlphaMatrix[0][j]) {
 					value = tAlphaMatrix[getRow()][j];
 				}
 			}
@@ -98,17 +102,25 @@ public class DiscreteConfidenceCounter extends DiscreteCounter {
 	 * @return bound
 	 */
 	public double getLowerBound() {
-		double bound = (getMean() - (1- (alpha/2))) * (Math.sqrt(Math.pow(getVariance(),2) / getNumSamples()));
+		double bound = getMean() - getBound();
 		return bound;
 	}
-	
+
 	/**
 	 * gibt obere grenze zurueck
 	 * @return bound
 	 */
 	public double getUpperBound() {
-		double bound = (getMean() + (1- (alpha /2))) * Math.sqrt(Math.pow(getVariance(),2) / getNumSamples());
+		double bound = getMean() + getBound();
 		return bound;
+	}
+	
+	/**
+	 * formel skript 4.4
+	 * @return 
+	 */
+	public double getBound() {
+		return ((1- alpha/2) * Math.sqrt(Math.pow(getVariance(),2) / getNumSamples()));
 	}
 	/*	Row 1: degrees of freedom
 	 *  Row 2: alpha 0.01
@@ -140,14 +152,14 @@ public class DiscreteConfidenceCounter extends DiscreteCounter {
 		 * @see Counter#csvReport(String)
 		 * Uncomment this function when you have implemented this class for reporting.
 		 */
-	@Override
-    public void csvReport(String outputdir) {
-        String content = observedVariable + ";" + getNumSamples() + ";" + getMean() + ";" + getVariance() + ";" + getStdDeviation() + ";" +
-                getCvar() + ";" + getMin() + ";" + getMax() + ";" + alpha + ";" + getT(getNumSamples() - 1) + ";" + getLowerBound() + ";" +
-                getUpperBound() + "\n";
-        String labels = "#counter ; numSamples ; MEAN; VAR; STD; CVAR; MIN; MAX;alpha;t(1-alpha/2);lowerBound;upperBound\n";
-        dd.writeCsv(outputdir, content, labels);
-  }
-		 
+		@Override
+		public void csvReport(String outputdir) {
+			String content = observedVariable + ";" + getNumSamples() + ";" + getMean() + ";" + getVariance() + ";" + getStdDeviation() + ";" +
+					getCvar() + ";" + getMin() + ";" + getMax() + ";" + alpha + ";" + getT(getNumSamples() - 1) + ";" + getLowerBound() + ";" +
+					getUpperBound() + "\n";
+			String labels = "#counter ; numSamples ; MEAN; VAR; STD; CVAR; MIN; MAX;alpha;t(1-alpha/2);lowerBound;upperBound\n";
+			writeCsv(outputdir, content, labels);
+		}
+
 
 }

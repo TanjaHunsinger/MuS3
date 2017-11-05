@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import simulation.lib.randVars.continous.*;
+import simulation.lib.randVars.*;
 import simulation.lib.statistic.IStatisticObject;
 
 /**
@@ -26,7 +28,7 @@ public abstract class Counter implements IStatisticObject{
 	private double max;
 	protected String observedVariable;
 	private String counterType;
-	private long numSamples = 5;
+	private long numSamples;  //hier veraendern: 5,...
 
 	/**
 	 * Basic constructor
