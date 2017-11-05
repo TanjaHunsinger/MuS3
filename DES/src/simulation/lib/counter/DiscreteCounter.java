@@ -1,5 +1,8 @@
 package simulation.lib.counter;
 
+import simulation.lib.randVars.continous.*;
+import simulation.lib.randVars.*;
+
 
 /**
  * This class implements a discrete time counter

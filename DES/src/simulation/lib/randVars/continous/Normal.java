@@ -1,6 +1,7 @@
 package simulation.lib.randVars.continous;
 
 import simulation.lib.randVars.RandVar;
+import simulation.lib.counter.*;
 import simulation.lib.rng.RNG;
 
 /**
