@@ -29,7 +29,7 @@ public class DCCTest {
 		int nExperiments = 500; // Anzahl an Experimenten
 
 		// TODO Hier ANZAHL der n
-		long numSamples = 50; // {5,10,50,100}
+		long numSamples = 100; // {5,10,50,100}
 
 		//w_x_y_z: w = Verteilung, x = Mean, y = cVar, z =alpha . 025 = 0.25 / 05 = 0.5 !!
 		//Normalverteilung:
@@ -152,6 +152,29 @@ public class DCCTest {
 		int counter_exp_10_4_90	= 0;
 		int counter_exp_10_4_95	= 0;
 
+		// Array + Counter für Berechnung HYPEREXPONENTIALVERTEILUNG
+		double[] hexpArr_10_025_90 = new double[500];
+		double[] hexpArr_10_025_95 = new double[500];
+		double[] hexpArr_10_05_90  = new double[500];
+		double[] hexpArr_10_05_95  = new double[500];
+		double[] hexpArr_10_1_90   = new double[500];
+		double[] hexpArr_10_1_95   = new double[500];
+		double[] hexpArr_10_2_90   = new double[500];
+		double[] hexpArr_10_2_95   = new double[500];
+		double[] hexpArr_10_4_90   = new double[500];
+		double[] hexpArr_10_4_95   = new double[500];
+		
+		int counter_hexp_10_025_90 = 0;
+		int counter_hexp_10_025_95 = 0;
+		int counter_hexp_10_05_90  = 0;
+		int counter_hexp_10_05_95  = 0;
+		int counter_hexp_10_1_90   = 0;
+		int counter_hexp_10_1_95   = 0;
+		int counter_hexp_10_2_90	= 0;
+		int counter_hexp_10_2_95	= 0;
+		int counter_hexp_10_4_90	= 0;
+		int counter_hexp_10_4_95	= 0;
+
 		
 		
 		// experiment soll 500 mal ausgeführt werden. hier nExperiments = 500
@@ -269,6 +292,16 @@ public class DCCTest {
 			expArr_10_4_90[i] 	= exp_10_4_90.getMean();
 			expArr_10_4_95[i] 	= exp_10_4_95.getMean();
 			
+			hexpArr_10_025_90[i] = hexp_10_025_90.getMean();
+			hexpArr_10_025_95[i] = hexp_10_025_95.getMean();
+			hexpArr_10_05_90[i]  = hexp_10_05_90.getMean();
+			hexpArr_10_05_95[i]  = hexp_10_05_95.getMean();			
+			hexpArr_10_1_90[i] 	 = hexp_10_1_90.getMean();
+			hexpArr_10_1_95[i] 	 = hexp_10_1_95.getMean();
+			hexpArr_10_2_90[i] 	 = hexp_10_2_90.getMean();
+			hexpArr_10_2_95[i] 	 = hexp_10_2_95.getMean();
+			hexpArr_10_4_90[i] 	 = hexp_10_4_90.getMean();
+			hexpArr_10_4_95[i] 	 = hexp_10_4_95.getMean();
 			
 		}
 
@@ -378,7 +411,7 @@ public class DCCTest {
 		double kerlang_upperBound_1_95 = (kerlang_10_1_95.getUpperBound());
 		
 		
-		// Berechnung Prozentstatz für realMean NORMALVERTEILUNG
+		// Berechnung Prozentstatz für realMean K-ERLANGVERTEILUNG
 		for(int i=0; i<nExperiments; i++) {
 			if( (kerlang_lowerBound_025_90 <= kerlangArr_10_025_90[i]) && (kerlang_upperBound_025_90 >= kerlangArr_10_025_90[i]))
 				counter_kerlang_10_025_90++;
@@ -472,22 +505,25 @@ public class DCCTest {
 
 		
 		//Ausgabe Exponentialverteilung:
-		System.out.println("Verteilung: Exponentialverteilung ");
-		System.out.println("Anzahl Samples: " + numSamples);
-		System.out.println("Quantil    alpha   mean  cVar       lower bound          upper bound" );
-		System.out.println(" 90%       0.10    10    0.25        " + new DecimalFormat("0.0000").format(exp_lowerBound_025_90) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_025_90)+"      "+(double)(counter_exp_10_025_90/(double)nExperiments));
-		System.out.println(" 95%       0.05    10    0.25        " + new DecimalFormat("0.0000").format(exp_lowerBound_025_95) + "               "+ new DecimalFormat("0.0000").format(exp_upperBound_025_95)+"      "+(double)(counter_exp_10_025_95/(double)nExperiments));
-		System.out.println(" 90%       0.10    10    0.50        " + new DecimalFormat("0.0000").format(exp_lowerBound_05_90) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_05_90)+"      "+(double)(counter_exp_10_05_90/(double)nExperiments));
-		System.out.println(" 95%       0.05    10    0.50       " + new DecimalFormat("0.0000").format(exp_lowerBound_05_95) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_05_95)+"      "+(double)(counter_exp_10_05_95/(double)nExperiments));
-		System.out.println(" 90%       0.10    10    1.00        " + new DecimalFormat("0.0000").format(exp_lowerBound_1_90) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_1_90)+"      "+(double)(counter_exp_10_1_90/(double)nExperiments));
-		System.out.println(" 95%       0.05    10    1.00        " + new DecimalFormat("0.0000").format(exp_lowerBound_1_95) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_1_95)+"      "+(double)(counter_exp_10_1_95/(double)nExperiments));
-		System.out.println(" 90%       0.10    10    2.00        " + new DecimalFormat("0.0000").format(exp_lowerBound_2_90) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_2_90)+"      "+(double)(counter_exp_10_2_90/(double)nExperiments));
-		System.out.println(" 95%       0.05    10    2.00        " + new DecimalFormat("0.0000").format(exp_lowerBound_2_95) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_2_95)+"      "+(double)(counter_exp_10_2_95/(double)nExperiments));
-		System.out.println(" 90%       0.10    10    4.00        " + new DecimalFormat("0.0000").format(exp_lowerBound_4_90) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_4_90)+"      "+(double)(counter_exp_10_4_90/(double)nExperiments));
-		System.out.println(" 95%       0.05    10    4.00        " + new DecimalFormat("0.0000").format(exp_lowerBound_4_95) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_4_95)+"      "+(double)(counter_exp_10_4_95/(double)nExperiments));
+//		System.out.println("Verteilung: Exponentialverteilung ");
+//		System.out.println("Anzahl Samples: " + numSamples);
+//		System.out.println("Quantil    alpha   mean  cVar       lower bound          upper bound" );
+//		System.out.println(" 90%       0.10    10    0.25        " + new DecimalFormat("0.0000").format(exp_lowerBound_025_90) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_025_90)+"      "+(double)(counter_exp_10_025_90/(double)nExperiments));
+//		System.out.println(" 95%       0.05    10    0.25        " + new DecimalFormat("0.0000").format(exp_lowerBound_025_95) + "               "+ new DecimalFormat("0.0000").format(exp_upperBound_025_95)+"      "+(double)(counter_exp_10_025_95/(double)nExperiments));
+//		System.out.println(" 90%       0.10    10    0.50        " + new DecimalFormat("0.0000").format(exp_lowerBound_05_90) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_05_90)+"      "+(double)(counter_exp_10_05_90/(double)nExperiments));
+//		System.out.println(" 95%       0.05    10    0.50       " + new DecimalFormat("0.0000").format(exp_lowerBound_05_95) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_05_95)+"      "+(double)(counter_exp_10_05_95/(double)nExperiments));
+//		System.out.println(" 90%       0.10    10    1.00        " + new DecimalFormat("0.0000").format(exp_lowerBound_1_90) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_1_90)+"      "+(double)(counter_exp_10_1_90/(double)nExperiments));
+//		System.out.println(" 95%       0.05    10    1.00        " + new DecimalFormat("0.0000").format(exp_lowerBound_1_95) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_1_95)+"      "+(double)(counter_exp_10_1_95/(double)nExperiments));
+//		System.out.println(" 90%       0.10    10    2.00        " + new DecimalFormat("0.0000").format(exp_lowerBound_2_90) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_2_90)+"      "+(double)(counter_exp_10_2_90/(double)nExperiments));
+//		System.out.println(" 95%       0.05    10    2.00        " + new DecimalFormat("0.0000").format(exp_lowerBound_2_95) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_2_95)+"      "+(double)(counter_exp_10_2_95/(double)nExperiments));
+//		System.out.println(" 90%       0.10    10    4.00        " + new DecimalFormat("0.0000").format(exp_lowerBound_4_90) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_4_90)+"      "+(double)(counter_exp_10_4_90/(double)nExperiments));
+//		System.out.println(" 95%       0.05    10    4.00        " + new DecimalFormat("0.0000").format(exp_lowerBound_4_95) + "              "+ new DecimalFormat("0.0000").format(exp_upperBound_4_95)+"      "+(double)(counter_exp_10_4_95/(double)nExperiments));
 
 		// ==========================================================================================================//		
-		//berechnet lower und upper bound für k-Erlangverteilung
+		
+		
+		
+		//berechnet lower und upper bound für Hyperexponentialverteilung
 		double hexp_lowerBound_025_90 = (hexp_10_025_90.getLowerBound());
 		double hexp_upperBound_025_90 = (hexp_10_025_90.getUpperBound());
 
@@ -519,20 +555,49 @@ public class DCCTest {
 		double hexp_upperBound_4_95 = (hexp_10_4_95.getUpperBound());
 
 
-//		//Ausgabe Hyperexponentialverteilung:
-//		System.out.println("Verteilung: Hyperexponentialverteilung ");
-//		System.out.println("Anzahl Samples: " + numSamples);
-//		System.out.println("Quantil    alpha   mean  cVar       lower bound          upper bound" );
-//		System.out.println(" 90%       0.10    10    0.25        " + new DecimalFormat("0.0000").format(hexp_lowerBound_025_90) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_025_90));
-//		System.out.println(" 95%       0.05    10    0.25        " + new DecimalFormat("0.0000").format(hexp_lowerBound_025_95) + "               "+ new DecimalFormat("0.0000").format(hexp_upperBound_025_95));
-//		System.out.println(" 90%       0.10    10    0.50        " + new DecimalFormat("0.0000").format(hexp_lowerBound_05_90) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_05_90));
-//		System.out.println(" 95%       0.05    10    0.50       " + new DecimalFormat("0.0000").format(hexp_lowerBound_05_95) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_05_95));
-//		System.out.println(" 90%       0.10    10    1.00        " + new DecimalFormat("0.0000").format(hexp_lowerBound_1_90) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_1_90));
-//		System.out.println(" 95%       0.05    10    1.00        " + new DecimalFormat("0.0000").format(hexp_lowerBound_1_95) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_1_95));
-//		System.out.println(" 90%       0.10    10    2.00        " + new DecimalFormat("0.0000").format(hexp_lowerBound_2_90) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_2_90));
-//		System.out.println(" 95%       0.05    10    2.00        " + new DecimalFormat("0.0000").format(hexp_lowerBound_2_95) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_2_95));
-//		System.out.println(" 90%       0.10    10    4.00        " + new DecimalFormat("0.0000").format(hexp_lowerBound_4_90) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_4_90));
-//		System.out.println(" 95%       0.05    10    4.00        " + new DecimalFormat("0.0000").format(hexp_lowerBound_4_95) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_4_95));
+		// Berechnung Prozentstatz für realMean HYPEREXPONENTIALVERTEILUNG
+		for(int i=0; i<nExperiments; i++) {
+			if( (hexp_lowerBound_025_90 <= hexpArr_10_025_90[i]) && (hexp_upperBound_025_90 >= hexpArr_10_025_90[i]))
+				counter_hexp_10_025_90++;
+			if( (hexp_lowerBound_025_95 <= hexpArr_10_025_95[i]) && (hexp_upperBound_025_95 >= hexpArr_10_025_95[i]))
+				counter_hexp_10_025_95++;
+			
+			if( (hexp_lowerBound_05_90 <= hexpArr_10_05_90[i]) && (hexp_upperBound_05_90 >= hexpArr_10_05_90[i]))
+				counter_hexp_10_05_90++;
+			if( (hexp_lowerBound_05_95 <= hexpArr_10_05_95[i]) && (hexp_upperBound_05_95 >= hexpArr_10_05_95[i]))
+				counter_hexp_10_05_95++;
+			
+			if( (hexp_lowerBound_1_90 <= hexpArr_10_1_90[i]) && (hexp_upperBound_1_90 >= hexpArr_10_1_90[i]))
+				counter_hexp_10_1_90++;
+			if( (hexp_lowerBound_1_95 <= hexpArr_10_1_95[i]) && (hexp_upperBound_1_95 >= hexpArr_10_1_95[i]))
+				counter_hexp_10_1_95++;
+
+			if( (hexp_lowerBound_2_90 <= hexpArr_10_2_90[i]) && (hexp_upperBound_2_90 >= hexpArr_10_2_90[i]))
+				counter_hexp_10_2_90++;
+			if( (hexp_lowerBound_2_95 <= hexpArr_10_2_95[i]) && (hexp_upperBound_2_95 >= hexpArr_10_2_95[i]))
+				counter_hexp_10_2_95++;
+
+			if( (hexp_lowerBound_4_90 <= hexpArr_10_4_90[i]) && (hexp_upperBound_4_90 >= hexpArr_10_4_90[i]))
+				counter_hexp_10_4_90++;
+			if( (hexp_lowerBound_4_95 <= hexpArr_10_4_95[i]) && (hexp_upperBound_4_95 >= hexpArr_10_4_95[i]))
+				counter_hexp_10_4_95++;
+		}
+
+		
+		//Ausgabe Hyperexponentialverteilung:
+		System.out.println("Verteilung: Hyperexponentialverteilung ");
+		System.out.println("Anzahl Samples: " + numSamples);
+		System.out.println("Quantil    alpha   mean  cVar       lower bound          upper bound" );
+		System.out.println(" 90%       0.10    10    0.25        " + new DecimalFormat("0.0000").format(hexp_lowerBound_025_90) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_025_90)+"      "+(double)(counter_hexp_10_025_90/(double)nExperiments));
+		System.out.println(" 95%       0.05    10    0.25        " + new DecimalFormat("0.0000").format(hexp_lowerBound_025_95) + "               "+ new DecimalFormat("0.0000").format(hexp_upperBound_025_95)+"      "+(double)(counter_hexp_10_025_95/(double)nExperiments));
+		System.out.println(" 90%       0.10    10    0.50        " + new DecimalFormat("0.0000").format(hexp_lowerBound_05_90) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_05_90)+"      "+(double)(counter_hexp_10_05_90/(double)nExperiments));
+		System.out.println(" 95%       0.05    10    0.50       " + new DecimalFormat("0.0000").format(hexp_lowerBound_05_95) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_05_95)+"      "+(double)(counter_hexp_10_05_95/(double)nExperiments));
+		System.out.println(" 90%       0.10    10    1.00        " + new DecimalFormat("0.0000").format(hexp_lowerBound_1_90) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_1_90)+"      "+(double)(counter_hexp_10_1_90/(double)nExperiments));
+		System.out.println(" 95%       0.05    10    1.00        " + new DecimalFormat("0.0000").format(hexp_lowerBound_1_95) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_1_95)+"      "+(double)(counter_hexp_10_1_95/(double)nExperiments));
+		System.out.println(" 90%       0.10    10    2.00        " + new DecimalFormat("0.0000").format(hexp_lowerBound_2_90) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_2_90)+"      "+(double)(counter_hexp_10_2_90/(double)nExperiments));
+		System.out.println(" 95%       0.05    10    2.00        " + new DecimalFormat("0.0000").format(hexp_lowerBound_2_95) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_2_95)+"      "+(double)(counter_hexp_10_2_95/(double)nExperiments));
+		System.out.println(" 90%       0.10    10    4.00        " + new DecimalFormat("0.0000").format(hexp_lowerBound_4_90) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_4_90)+"      "+(double)(counter_hexp_10_4_90/(double)nExperiments));
+		System.out.println(" 95%       0.05    10    4.00        " + new DecimalFormat("0.0000").format(hexp_lowerBound_4_95) + "              "+ new DecimalFormat("0.0000").format(hexp_upperBound_4_95)+"      "+(double)(counter_hexp_10_4_95/(double)nExperiments));
 
 	}
 }
